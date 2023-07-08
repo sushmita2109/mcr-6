@@ -11,7 +11,7 @@ export const ResturantDetail = () => {
   const { resturantStates, resturantDispatch } = useResturant();
   console.log(
     "🚀 ~ file: ResturantDetail.jsx:11 ~ ResturantDetail ~ resturantStates:",
-    resturantStates.resturantDetail.ratings
+    resturantStates.resturantDetail
   );
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -66,27 +66,35 @@ export const ResturantDetail = () => {
       </Box>
       <Box>
         <Typography variant="h5">Reviews</Typography>
-        {resturantStates?.resturantDetail?.map((resturant) => (
-          <div key={resturant.id}>
-            {resturant?.ratings?.map((rating, idx) => (
-              <Box key={idx} sx={{ display: "flex", flexDirection: "row" }}>
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
-                  <img src={rating.pp} alt="profile" />
-                  <Typography>{rating.revName}</Typography>
-                </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {resturantStates?.resturantDetail?.map((resturant) => (
+            <div key={resturant.id}>
+              {resturant?.ratings?.map((rating, idx) => (
+                <Box key={idx} sx={{ display: "flex", flexDirection: "row" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <img src={rating.pp} alt="profile" />
+                    <Typography>{rating.revName}</Typography>
+                  </Box>
 
-                <Typography>{rating.comment}</Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<StarRateIcon />}
-                  sx={{ height: "20px", width: "5px" }}
-                >
-                  {rating.rating}
-                </Button>
-              </Box>
-            ))}
-          </div>
-        ))}
+                  <Typography>{rating.comment}</Typography>
+                  <Button
+                    variant="contained"
+                    startIcon={<StarRateIcon />}
+                    sx={{ height: "20px", width: "5px" }}
+                  >
+                    {rating.rating}
+                  </Button>
+                </Box>
+              ))}
+            </div>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
