@@ -3,13 +3,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import { useResturant } from "../Context/ResturantContext";
+import { Link, useNavigate } from "react-router-dom";
 
 export const HomeFeed = () => {
   const { resturantStates, resturantDispatch } = useResturant();
-  console.log(
-    "🚀 ~ file: HomeFeed.jsx:9 ~ HomeFeed ~ resturantStates:",
-    resturantStates.filteredResturants
-  );
 
   const getResturants = (cusine) => {
     const filteredData = resturantStates?.allresturants?.filter(
@@ -42,15 +39,20 @@ export const HomeFeed = () => {
           >
             {resturant.menu.map((menudetail, idx) => (
               <Card key={idx} sx={{ maxWidth: "500px" }}>
-                <CardMedia
-                  sx={{ height: "200px ", width: "200px" }}
-                  image={menudetail.imgSrc}
-                />
-                <CardContent>
-                  <Typography variant="body-1"> {menudetail.name}</Typography>
-                  <Typography>{menudetail.price}</Typography>
-                  <Typography>{resturant.name}</Typography>
-                </CardContent>
+                <Link
+                  to={`/${resturant.id}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  <CardMedia
+                    sx={{ height: "200px ", width: "200px" }}
+                    image={menudetail.imgSrc}
+                  />
+                  <CardContent>
+                    <Typography variant="body-1"> {menudetail.name}</Typography>
+                    <Typography>{menudetail.price}</Typography>
+                    <Typography>{resturant.name}</Typography>
+                  </CardContent>
+                </Link>
               </Card>
             ))}
           </Box>
