@@ -28,7 +28,11 @@ export const ReviewModal = ({ open, onClose, resturantId }) => {
     }));
   };
   const saveReview = () => {
-    resturantDispatch({ type: "SAVE_REVIEW", payload: review });
+    resturantDispatch({
+      type: "SAVE_REVIEW",
+      payload: review,
+      resturantId: resturantId,
+    });
     onClose();
   };
   return (

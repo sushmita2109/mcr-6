@@ -32,12 +32,12 @@ export const resturantReducer = (state, action) => {
     }
     case "SAVE_REVIEW": {
       let newRating = action.payload;
-      let resturant = state.resturantDetail;
-      resturant.ratings = { ...resturant.ratings, newRating };
+      //   let resturant = state.resturantDetail;
+      //   resturant.ratings = newRating;
 
       return {
         ...state,
-        resturantDetail: resturant,
+        resturantDetail: [...state.resturantDetail, newRating],
       };
     }
     default: {
